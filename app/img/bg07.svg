@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="901" height="1005.5" viewBox="0 0 901 1005.5">
+    <defs>
+    
+    <linearGradient id="blue-gradient" x1="100%" y1="0%" x2="0%" y2="100%" >
+      <stop stop-color="#ffffff" offset="0%"/>
+      <stop stop-color="#e0e0e0" offset="30%"/>
+      <stop stop-color="#e0e0e0" offset="70%"/>
+      <stop stop-color="#ffffff" offset="100%"/>
+    </linearGradient>
+
+  </defs>
+  <g transform="translate(-2157.5)" fill="url(#blue-gradient)">
+    <path id="Фигура_6_копия_34" data-name="Фигура 6 копия 34" class="cls-1" d="M3058,1005V572s1.05-27.012-20-44c-14.56-11.755-14-24-14-24v-3s-0.56-12.245,14-24c21.05-16.988,20-44,20-44V0H2158V433s-1.05,27.012,20,44c14.56,11.755,14,24,14,24v3s0.56,12.245-14,24c-21.05,16.988-20,44-20,44v433h900Z" style="stroke: inherit; filter: none; fill: inherit"/>
+  </g>
+</svg>
