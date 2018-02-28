@@ -17,6 +17,16 @@ $(function() {
 		preferredCountries: ['ua', 'ru', 'by','us'],
 	});
 
+  $('.anchor').bind("click", function() {
+    var btn = $(this).data('href');
+    var target = $(btn);
+    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      $('html,body').animate({
+        scrollTop: target.offset().top
+      }, 1500);
+    return false;
+  });
+
   $(document).ready(function() {
 
     var $rewSlider = $('.rew-slider');
