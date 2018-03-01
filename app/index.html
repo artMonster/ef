@@ -1661,8 +1661,6 @@ if (strlen($_GET['gclid']) > '0') {
               var mun = ((100/tot*c) << 0);
               var perc = ((100/tot*c) << 0) +"%";
               prog.style.width = perc;
-              //document.getElementById('app').style.opacity = mun/100;
-              //document.getElementById('app').style.filter = 'blur(' + 32-(mun/3) +'px)';
               if(mun > 90) {
               	document.getElementById('app').style.transition = 'none';
               }
@@ -1673,7 +1671,6 @@ if (strlen($_GET['gclid']) > '0') {
               setTimeout(function(){ 
                 ovrl.style.display = "none";
                 document.getElementById('app').style.opacity = 1;
-                //document.getElementById('app').style.filter = 'blur(0px)';
               }, 200);
             }
             for(var i=0; i<tot; i++) {

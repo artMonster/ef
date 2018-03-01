@@ -198,7 +198,12 @@ $(function() {
         percent = 0;
       }
       var numpak;
-      $('.'+pak).find('.prices').next().text('КУПИТЬ БИЛЕТЫ');
+      var formTickets = $('.'+pak).closest('.pak').find('form');
+      var subm = formTickets.find('[name=push]');
+      var numTickets = formTickets.find('[name=numTickets]');
+      numTickets.val(numb);
+      subm.text('КУПИТЬ БИЛЕТЫ');
+      $('.'+pak).find('.txtBtn').text('«КУПИТЬ БИЛЕТЫ»');
       if (pak == 'pak01') {
         $('.'+pak).find('.p01').text($priceData[0].pak01[0]*numb);
         $('.'+pak).find('.p02').text($priceData[0].pak01[1]*numb);
@@ -206,6 +211,7 @@ $(function() {
         $('.'+pak).find('.p04').text($priceData[0].pak01[3]*numb);
         $('.'+pak).find('.priceNow').text($priceData[0].pak01[4]*numb);
         $('.'+pak).find('.priceOnline').text($priceData[0].pak01[5]*numb);
+        formTickets.attr('data-price', $priceData[0].pak01[5]*numb);
       } else if (pak == 'pak02') {
         $('.'+pak).find('.p01').text( (($priceData[0].pak02[0] - ((($priceData[0].pak02[0])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.p02').text( (($priceData[0].pak02[1] - ((($priceData[0].pak02[1])/100)*percent))*numb).toFixed() );
@@ -213,6 +219,7 @@ $(function() {
         $('.'+pak).find('.p04').text( (($priceData[0].pak02[3] - ((($priceData[0].pak02[3])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceNow').text( (($priceData[0].pak02[4] - ((($priceData[0].pak02[4])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceOnline').text( (($priceData[0].pak02[5] - ((($priceData[0].pak02[5])/100)*percent))*numb).toFixed() );
+        formTickets.attr('data-price', (($priceData[0].pak02[5] - ((($priceData[0].pak02[5])/100)*percent))*numb).toFixed() );
       } else if (pak == 'pak03') {
         $('.'+pak).find('.p01').text( (($priceData[0].pak03[0] - ((($priceData[0].pak03[0])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.p02').text( (($priceData[0].pak03[1] - ((($priceData[0].pak03[1])/100)*percent))*numb).toFixed() );
@@ -220,6 +227,7 @@ $(function() {
         $('.'+pak).find('.p04').text( (($priceData[0].pak03[3] - ((($priceData[0].pak03[3])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceNow').text( (($priceData[0].pak03[4] - ((($priceData[0].pak03[4])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceOnline').text( (($priceData[0].pak03[5] - ((($priceData[0].pak03[5])/100)*percent))*numb).toFixed() );
+        formTickets.attr('data-price', (($priceData[0].pak03[5] - ((($priceData[0].pak03[5])/100)*percent))*numb).toFixed() );
       } else if (pak == 'pak04') {
         $('.'+pak).find('.p01').text( (($priceData[0].pak04[0] - ((($priceData[0].pak04[0])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.p02').text( (($priceData[0].pak04[1] - ((($priceData[0].pak04[1])/100)*percent))*numb).toFixed() );
@@ -227,7 +235,7 @@ $(function() {
         $('.'+pak).find('.p04').text( (($priceData[0].pak04[3] - ((($priceData[0].pak04[3])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceNow').text( (($priceData[0].pak04[4] - ((($priceData[0].pak04[4])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceOnline').text( (($priceData[0].pak04[5] - ((($priceData[0].pak04[5])/100)*percent))*numb).toFixed() );
-
+        formTickets.attr('data-price', (($priceData[0].pak04[5] - ((($priceData[0].pak04[5])/100)*percent))*numb).toFixed() );
       } else if (pak == 'pak05') {
         $('.'+pak).find('.p01').text($priceData[0].pak05[0]*numb);
         $('.'+pak).find('.p02').text($priceData[0].pak05[1]*numb);
@@ -235,7 +243,9 @@ $(function() {
         $('.'+pak).find('.p04').text($priceData[0].pak05[3]*numb);
         $('.'+pak).find('.priceNow').text($priceData[0].pak05[4]*numb);
         $('.'+pak).find('.priceOnline').text($priceData[0].pak05[5]*numb);
+        formTickets.attr('data-price', $priceData[0].pak05[5]*numb);
       }
+
     }
   });
 
@@ -245,6 +255,7 @@ $(function() {
     var numb = +numbCont.text();
     if (+numb != 1) {
       numb--;
+     //$(this).closest('.ticket-item').find('[name=numTickets]').val(thisT);
       numbCont.text(numb);
       var percent;
       if (numb >= 5) {
@@ -257,8 +268,13 @@ $(function() {
         percent = 0;
       }
       var numpak;
+      var formTickets = $('.'+pak).closest('.pak').find('form');
+      var subm = formTickets.find('[name=push]');
+      var numTickets = formTickets.find('[name=numTickets]');
+      numTickets.val(numb);
       if (numb == 1) {
-        $('.'+pak).find('.prices').next().text('КУПИТЬ БИЛЕТ');
+        $('.'+pak).find('.txtBtn').text('«КУПИТЬ БИЛЕТ»');
+        subm.text('КУПИТЬ БИЛЕТ');
       }
       if (pak == 'pak01') {
         $('.'+pak).find('.p01').text($priceData[0].pak01[0]*numb);
@@ -267,6 +283,7 @@ $(function() {
         $('.'+pak).find('.p04').text($priceData[0].pak01[3]*numb);
         $('.'+pak).find('.priceNow').text($priceData[0].pak01[4]*numb);
         $('.'+pak).find('.priceOnline').text($priceData[0].pak01[5]*numb);
+        formTickets.attr('data-price', $priceData[0].pak01[5]*numb);
       } else if (pak == 'pak02') {
         $('.'+pak).find('.p01').text( (($priceData[0].pak02[0] - ((($priceData[0].pak02[0])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.p02').text( (($priceData[0].pak02[1] - ((($priceData[0].pak02[1])/100)*percent))*numb).toFixed() );
@@ -274,6 +291,7 @@ $(function() {
         $('.'+pak).find('.p04').text( (($priceData[0].pak02[3] - ((($priceData[0].pak02[3])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceNow').text( (($priceData[0].pak02[4] - ((($priceData[0].pak02[4])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceOnline').text( (($priceData[0].pak02[5] - ((($priceData[0].pak02[5])/100)*percent))*numb).toFixed() );
+        formTickets.attr('data-price', (($priceData[0].pak02[5] - ((($priceData[0].pak02[5])/100)*percent))*numb).toFixed() );
       } else if (pak == 'pak03') {
         $('.'+pak).find('.p01').text( (($priceData[0].pak03[0] - ((($priceData[0].pak03[0])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.p02').text( (($priceData[0].pak03[1] - ((($priceData[0].pak03[1])/100)*percent))*numb).toFixed() );
@@ -281,6 +299,7 @@ $(function() {
         $('.'+pak).find('.p04').text( (($priceData[0].pak03[3] - ((($priceData[0].pak03[3])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceNow').text( (($priceData[0].pak03[4] - ((($priceData[0].pak03[4])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceOnline').text( (($priceData[0].pak03[5] - ((($priceData[0].pak03[5])/100)*percent))*numb).toFixed() );
+        formTickets.attr('data-price', (($priceData[0].pak03[5] - ((($priceData[0].pak03[5])/100)*percent))*numb).toFixed() );
       } else if (pak == 'pak04') {
         $('.'+pak).find('.p01').text( (($priceData[0].pak04[0] - ((($priceData[0].pak04[0])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.p02').text( (($priceData[0].pak04[1] - ((($priceData[0].pak04[1])/100)*percent))*numb).toFixed() );
@@ -288,6 +307,7 @@ $(function() {
         $('.'+pak).find('.p04').text( (($priceData[0].pak04[3] - ((($priceData[0].pak04[3])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceNow').text( (($priceData[0].pak04[4] - ((($priceData[0].pak04[4])/100)*percent))*numb).toFixed() );
         $('.'+pak).find('.priceOnline').text( (($priceData[0].pak04[5] - ((($priceData[0].pak04[5])/100)*percent))*numb).toFixed() );
+        formTickets.attr('data-price', (($priceData[0].pak04[5] - ((($priceData[0].pak04[5])/100)*percent))*numb).toFixed() );
       } else if (pak == 'pak05') {
         $('.'+pak).find('.p01').text($priceData[0].pak05[0]*numb);
         $('.'+pak).find('.p02').text($priceData[0].pak05[1]*numb);
@@ -295,6 +315,7 @@ $(function() {
         $('.'+pak).find('.p04').text($priceData[0].pak05[3]*numb);
         $('.'+pak).find('.priceNow').text($priceData[0].pak05[4]*numb);
         $('.'+pak).find('.priceOnline').text($priceData[0].pak05[5]*numb);
+        formTickets.attr('data-price', $priceData[0].pak05[5]*numb );
       }
     }
   });
@@ -310,232 +331,41 @@ $(function() {
   });
 
   $(document).ready(function() {
-
+    if (localStorage.name && localStorage.email && localStorage.phone)  {
+        $('[name="tName[1]"]').val(localStorage.name);
+        $('[name="tEmail[1]"]').val(localStorage.email);
+        $('[name="tPhone[1]"]').val(localStorage.phone);
+    }
+    $('.popup-with-zoom-anim').magnificPopup({
+          type: 'inline',
+          fixedContentPos: true,
+          fixedBgPos: true,
+          overflowY: 'auto',
+          closeBtnInside: true,
+          preloader: false,
+          midClick: true,
+          removalDelay: 300,
+          mainClass: 'mfp-zoom-in',
+          tClose: 'Закрыть',
+          callbacks: {
+          beforeOpen: function() {
+            this.st.mainClass = this.st.el.attr('data-effect');
+            }
+          }
+        });
    
   }); // document.ready
 
-});
-
-$(function() {
-
-  var input = $('input');
-  var form = $('form');
-  var patternHidden = /(\D)+[^0-9]{2,}/i;
-  var patternText = /(\D)+[^0-9]{2,}/i;
-  var patternEmail = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
-  var patternTel = /([+()0-9 ]){9,18}/i;
-  var errorFieldsMessage = {
-    text : ' Имя',
-    tel : ' Телефон',
-    email : ' Ваш лучший e-mail',
-  };
-
-  function validationsField(field) {
-
-    var fieldValue = field[0].value;
-    var fieldType = field[0].type;
-
-    if (fieldType == 'email') {
-      var pattern = patternEmail;  
-    } else if (fieldType == 'text') {
-      var pattern = patternText;
-    } else if (fieldType == 'tel') {
-      var pattern = patternTel;
-    } else if (fieldType == 'hidden') {
-      return true; //var pattern = patternHidden;
+  $('[name=push]').bind('click', function(e){
+        var form = $(this).closest('form'); 
+        var ttt = form.find('[class=ttt]').val();
+        var numb = form.find('[name=numTickets]').val();
+        if (+numb > 1) {
+            for (var i = 2; i < +numb + 1; i++) {
+            form.append('<input name="types['+i+']" type="hidden" value="'+ ttt +'">')
+        }
     }
-    return pattern.test(fieldValue);
-  }
-
-function validationsForm(form) {
-
-  var fields = form.find('input');
-  var errorTags = form.find('.error-message');
-  var numberIsValid = 0;
-  var errorMessage = [];
-
-  fields.each(function() {
-    var field = $(this);
-    var errorFieldType = field[0].type;
-    if (validationsField(field)) {
-      field.removeClass('error').addClass('accept');
-      numberIsValid++;
-    } else {
-      if (errorFieldType == 'text') {
-        errorMessage.push(errorFieldsMessage.text);
-      } else if (errorFieldType == 'tel'){
-        errorMessage.push(errorFieldsMessage.tel);
-      } else if (errorFieldType == 'email') {
-        errorMessage.push(errorFieldsMessage.email);
-      }
-      field.addClass('error');
-    }
+    //dataLayer.push({'event': 'send_form'});
   });
 
-  errorMessage.length > 0 ? errorTags.html('<span>Некорректное заполнение полей: <br><b>' + errorMessage + '</b></span>') : null;
-  return fields.length == numberIsValid;
-}
-
-function keyupEvent() {
-
-  var field = $(this);
-  var errorTags = field.closest('form').find('.error-message');
-  errorTags.html('');
-
-  field.hasClass('error') ? field.removeClass('error') : false;
-  validationsField(field) ? field.addClass('accept') : field.removeClass('accept');
-
-}
-
-function submitForm() {
-
-
-
-  var me = $(this);
-  var dataFields = me.find('input');
-  var exitValue = me.find('[name=package]').val();
-  var btnSubmit = me.find('[type=submit]');
-
-  if (validationsForm(me)){
-    me.addClass('send');
-    btnSubmit.attr('disabled', true);
-    var formid = me.closest('.modalWrapper');
-    var find_b = me.closest('.container');
-    var fondy_b = find_b.find('.fondy_b');
-
-    var fieldsDefault = {
-      'name' : me.find('input[name=name]').val(),
-      'custom_mob_phone' : me.find('input[name=phone]').val(),
-      'email' : me.find('input[name=email]').val(),
-      'campaign_token' : me.find('input[name=gr_comp]').val(),
-      'start_day' : '0',
-      'comment' : me.find('input[name=comment]').val(),
-      'utm_source' : me.find('input[name=utm_source]').val(),
-      'utm_campaign' : me.find('input[name=utm_campaign]').val(),
-      'utm_medium' : me.find('input[name=utm_medium]').val(),
-      'utm_term' : me.find('input[name=utm_term]').val(),
-      'utm_content' : me.find('input[name=utm_content]').val(),
-    }
-
-    var gDataFields = {
-      'entry.1378648537': me.find('input[name=name]').val(),
-      'entry.906441403': me.find('input[name=phone]').val(),
-      'entry.1561585642': me.find('input[name=email]').val(),
-      'entry.1304558152' : 'utm_source=' + me.find('input[name=utm_source]').val() + ';utm_campaign=' + me.find('input[name=utm_campaign]').val() + ';utm_medium=' + me.find('input[name=utm_medium]').val() + ';utm_term=' + me.find('input[name=utm_term]').val() + ';utm_content=' + me.find('input[name=utm_content]').val(),
-      'entry.2147320007' : me.find('input[name=comment]').val(),
-    };
-
-    localStorage.name = fieldsDefault['name'];
-    localStorage.phone = fieldsDefault['custom_mob_phone'];
-    localStorage.email = fieldsDefault['email'];
-    //localStorage.sales = fieldsDefault['sales'];
-    //localStorage.jscd = JSON.stringify(jscd);
-
-    $.ajax({
-      type: "POST",
-      url: 'https://docs.google.com/forms/d/e/1FAIpQLSeosxEHoJlpVasAHRhzrEW20_B60mKo58N1CkYnwcANaTyDcA/formResponse',
-      dataType: 'xml',
-      data: gDataFields,
-      statusCode: {
-        0: function() {
-          console.log('done');
-        }
-      }
-    });
-    $.ajax({
-      type: 'POST',
-      url: 'crm/send.php',
-      dataType: 'json',
-      data: fieldsDefault,
-      statusCode: {
-        200: function(msg) {
-          console.log('crm:' + msg);
-          $.ajax({
-            type: 'POST',
-            url: 'https://app.getresponse.com/add_subscriber.html',
-            dataType: 'json',
-            data: fieldsDefault,
-            statusCode: {
-              0: function(msg) {
-                console.log('gr:' + msg);
-                //dataLayer.push({'event': 'sendform'});
-                if (formid.attr('id') == 'exitform') {
-                  //succestext.addClass('succesok');
-                  //loader.css('display','none');
-                  //proccesbar.animate({
-                  //width: "100%"
-                  //}, 4000, function() {
-                    //proccesbar.attr('style','');
-                    //succestext.removeClass('succesok');
-                    //me.removeClass('send').trigger("reset");
-                    //if ($('.g-modal-wrapper').hasClass('modal-open')) {
-                    //  $('.g-modal-wrapper').removeClass('modal-open').attr('style','');
-                    //  $('html').removeClass('g-modal-html');
-                    //}              
-                    //btnSubmit.attr('disabled', false);
-                  //});
-                } else {
-                  window.location.href = 'https://forumenergy.pro/ticketsdone/';
-                }
-              }
-            }
-          });
-        }
-      }
-    });
-
-/*
-    $.ajax({
-        type: 'POST',
-        url: '../amo/amo_add_contact.php',
-        dataType: 'json',
-        data: fieldsDefault,
-        statusCode: {
-          200: function(msg) {
-            //console.log(msg);
-            var msg1 = msg;
-            $.ajax({
-              type: 'POST',
-              url: '../amo/gr_add_contact.php',
-              dataType: 'json',
-              data: fieldsDefault,
-              statusCode: {
-                200: function(msg) {
-                  //console.log(msg);
-                  var msg2 = msg;
-                  var gDataFIelds = {
-                    'entry.1378648537': me.find('input[name=name]').val(),
-                    'entry.906441403': me.find('input[name=phone]').val(),
-                    'entry.1561585642': me.find('input[name=email]').val(),
-                    'entry.2147320007': me.find('input[name=l_name]').val(),
-                    'entry.1304558152': me.find('input[name=utm]').val(),
-                    'entry.1739428933': JSON.stringify(msg1) + ' / ' + JSON.stringify(msg2),
-                  };
-                  $.ajax({
-                    type: "POST",
-                    url: 'https://docs.google.com/forms/d/e/    /formResponse',
-                    dataType: 'xml',
-                    data: gDataFIelds,
-                    statusCode: {
-                      0: function() {
-                        //window.location.href = '';
-                      }
-                    }
-                  });
-                }
-              }
-          });
-          }
-        }
-    });
-    */
-  }
-}
-
-input.keyup(keyupEvent).focus(keyupEvent);
-form.submit(submitForm);
-
-  
-  
-  
 });
