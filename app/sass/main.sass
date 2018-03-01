@@ -37,7 +37,7 @@ body
 				border-color: red
 			&:required:valid
 				border-color: green
-button
+button, .pak
 	-webkit-transition: all 0.3s
 	-moz-transition: all 0.3s
 	transition: all 0.3s
@@ -1502,6 +1502,13 @@ $btn-transition: transform .5s cubic-bezier(.17, .67, .6, 1.3)
 			display: none
 		h2+img
 			margin-bottom: 10px
+		.container-fluid
+			&:hover
+				.pak
+					opacity: 0.3
+		.pak
+			&:hover
+				opacity: 1!important
 	.pak
 		margin-top: 20px
 		position: relative
@@ -1706,6 +1713,7 @@ $btn-transition: transform .5s cubic-bezier(.17, .67, .6, 1.3)
 					line-height: 44px
 					text-align: center
 					vertical-align: middle
+					padding-bottom: 7px
 					font-weight: 600
 					cursor: default
 					padding-left: 0
