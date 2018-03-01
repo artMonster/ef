@@ -2,6 +2,26 @@
 
 $ip=$_SERVER['REMOTE_ADDR']; 
 
+if (strlen($_GET['gclid']) > '0') {
+	$utm_source = $_GET['gclid'];
+	$utm_campaign = 'noCampaign';
+	$utm_medium = 'noMedium';
+	$utm_term = 'noTerm';
+	$utm_content = 'noContent';
+} elseif (strlen($_GET['utm_source']) > '0')  {
+	$utm_source = $_GET['utm_source'];
+	$utm_campaign = $_GET['utm_campaign'];
+	$utm_medium = $_GET['utm_medium'];
+	$utm_term = $_GET['utm_term'];
+	$utm_content = $_GET['utm_content'];
+} else {
+	$utm_source = 'noUtm';
+	$utm_campaign = 'noCampaign';
+	$utm_medium = 'noMedium';
+	$utm_term = 'noTerm';
+	$utm_content = 'noContent';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +34,9 @@ $ip=$_SERVER['REMOTE_ADDR'];
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- Template Basic Images Start -->
-	<meta property="og:image" content="https://forumenergy.pro/test/img/og.png">
-	<link rel="icon" href="img/favicon/favicon.ico">
-	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<meta property="og:image" content="https://forumenergy.pro/img/og.png">
+	<link rel="icon" href="https://forumenergy.pro/img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://forumenergy.pro/img/favicon/apple-touch-icon-180x180.png">
 	<!-- Template Basic Images End -->
 	<!-- Custom Browsers Color Start -->
 	<meta name="theme-color" content="#0E003E">
@@ -259,7 +279,7 @@ $ip=$_SERVER['REMOTE_ADDR'];
 							</div>
 							<p class="error-message text-center"></p>
 							<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
-							<input type="hidden" name="gr_comp" value="42cXL" />
+							<input type="hidden" name="gr_comp" value="4GHho" />
                 			<input type="hidden" name="comment" value="topform" />
 
 							<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
@@ -663,7 +683,7 @@ $ip=$_SERVER['REMOTE_ADDR'];
 								</div>
 							</div>
 							<p class="error-message text-center"></p>
-							<input type="hidden" name="gr_comp" value="42cXL" />
+							<input type="hidden" name="gr_comp" value="4GHho" />
 		                	<input type="hidden" name="comment" value="program" />
 		                			
 							<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
@@ -1265,7 +1285,7 @@ $ip=$_SERVER['REMOTE_ADDR'];
 							</div>
 							<p class="error-message text-center"></p>
 							<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
-							<input type="hidden" name="gr_comp" value="42cXL" />
+							<input type="hidden" name="gr_comp" value="4GHho" />
                 			<input type="hidden" name="comment" value="bottomform" />
 
 							<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
@@ -1487,8 +1507,8 @@ $ip=$_SERVER['REMOTE_ADDR'];
 					</div>
 					<p class="error-message text-center"></p>
 					<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
-					<input type="hidden" name="gr_comp" value="42cXL" />
-                	<input type="hidden" name="comment" value="topform" />
+					<input type="hidden" name="gr_comp" value="4GHho" />
+                	<input type="hidden" name="comment" value="speakers-form" />
                 			
 					<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
 					<input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>"/>
@@ -1526,8 +1546,8 @@ $ip=$_SERVER['REMOTE_ADDR'];
 					</div>
 					<p class="error-message text-center"></p>
 					<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
-					<input type="hidden" name="gr_comp" value="42cXL" />
-                	<input type="hidden" name="comment" value="topform" />
+					<input type="hidden" name="gr_comp" value="4GHho" />
+                	<input type="hidden" name="comment" value="main-form" />
                 			
 					<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
 					<input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>"/>
@@ -1572,8 +1592,8 @@ $ip=$_SERVER['REMOTE_ADDR'];
 					</div>
 					<p class="error-message text-center"></p>
 					<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
-					<input type="hidden" name="gr_comp" value="42cXL" />
-                	<input type="hidden" name="comment" value="topform" />
+					<input type="hidden" name="gr_comp" value="4GHho" />
+                	<input type="hidden" name="comment" value="video-form" />
                 			
 					<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
 					<input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>"/>
@@ -1610,8 +1630,8 @@ $ip=$_SERVER['REMOTE_ADDR'];
 					</div>
 					<p class="error-message text-center"></p>
 					<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
-					<input type="hidden" name="gr_comp" value="42cXL" />
-                	<input type="hidden" name="comment" value="topform" />
+					<input type="hidden" name="gr_comp" value="4GHho" />
+                	<input type="hidden" name="comment" value="part-form" />
                 			
 					<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
 					<input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>"/>
@@ -1667,6 +1687,5 @@ $ip=$_SERVER['REMOTE_ADDR'];
         }());
 </script>
 	<script src="js/common.js"></script>
-	<!--<script src="js/pp.js"></script>-->
 </body>
 </html>

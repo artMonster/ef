@@ -1,21 +1,21 @@
 $(function() {
 
-	$('[type=tel]').intlTelInput({
-		allowExtensions: false,
-		autoFormat: true,
-		autoHideDialCode: false,
-		autoPlaceholder: false,
-		defaultCountry: "auto",
-			geoIpLookup: function(callback) {
-				$.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
-				var countryCode = (resp && resp.country) ? resp.country : "";
-				callback(countryCode);
-				});
-			},
-		nationalMode: false,
-		numberType: 'MOBILE',
-		preferredCountries: ['ua', 'ru', 'by','us'],
-	});
+  $('[type=tel]').intlTelInput({
+    allowExtensions: false,
+    autoFormat: true,
+    autoHideDialCode: false,
+    autoPlaceholder: false,
+    defaultCountry: "auto",
+      geoIpLookup: function(callback) {
+        $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+        var countryCode = (resp && resp.country) ? resp.country : "";
+        callback(countryCode);
+        });
+      },
+    nationalMode: false,
+    numberType: 'MOBILE',
+    preferredCountries: ['ua', 'ru', 'by','us'],
+  });
 
   $('.anchor').bind("click", function() {
     var btn = $(this).data('href');
@@ -279,30 +279,86 @@ function submitForm() {
 
     var fieldsDefault = {
       'name' : me.find('input[name=name]').val(),
-      'phone' : me.find('input[name=phone]').val(),
+      'custom_mob_phone' : me.find('input[name=phone]').val(),
       'email' : me.find('input[name=email]').val(),
-      'l_name' : me.find('input[name=l_name]').val(),
-      'l_status' : me.find('input[name=l_status]').val(),
-      'utm' : me.find('input[name=utm]').val(),
-      'gr_comp' : me.find('input[name=gr_comp]').val(),
-      'sales' : me.find('input[name=sales]').val(),
+      'campaign_token' : me.find('input[name=gr_comp]').val(),
+      'start_day' : '0',
+      'comment' : me.find('input[name=comment]').val(),
+      'utm_source' : me.find('input[name=utm_source]').val(),
+      'utm_campaign' : me.find('input[name=utm_campaign]').val(),
+      'utm_medium' : me.find('input[name=utm_medium]').val(),
+      'utm_term' : me.find('input[name=utm_term]').val(),
+      'utm_content' : me.find('input[name=utm_content]').val(),
     }
 
-    var gDataFIelds = {
+    var gDataFields = {
       'entry.1378648537': me.find('input[name=name]').val(),
       'entry.906441403': me.find('input[name=phone]').val(),
       'entry.1561585642': me.find('input[name=email]').val(),
-      'entry.2147320007': me.find('input[name=l_status]').val(),
-      'entry.1304558152': me.find('input[name=utm]').val(),
+      'entry.1304558152' : 'utm_source=' + me.find('input[name=utm_source]').val() + ';utm_campaign=' + me.find('input[name=utm_campaign]').val() + ';utm_medium=' + me.find('input[name=utm_medium]').val() + ';utm_term=' + me.find('input[name=utm_term]').val() + ';utm_content=' + me.find('input[name=utm_content]').val(),
+      'entry.2147320007' : me.find('input[name=comment]').val(),
     };
 
     localStorage.name = fieldsDefault['name'];
-    localStorage.phone = fieldsDefault['phone'];
+    localStorage.phone = fieldsDefault['custom_mob_phone'];
     localStorage.email = fieldsDefault['email'];
-    localStorage.sales = fieldsDefault['sales'];
+    //localStorage.sales = fieldsDefault['sales'];
     //localStorage.jscd = JSON.stringify(jscd);
 
+    $.ajax({
+      type: "POST",
+      url: 'https://docs.google.com/forms/d/e/1FAIpQLSeosxEHoJlpVasAHRhzrEW20_B60mKo58N1CkYnwcANaTyDcA/formResponse',
+      dataType: 'xml',
+      data: gDataFields,
+      statusCode: {
+        0: function() {
+          console.log('done');
+        }
+      }
+    });
+    $.ajax({
+      type: 'POST',
+      url: 'crm/send.php',
+      dataType: 'json',
+      data: fieldsDefault,
+      statusCode: {
+        200: function(msg) {
+          console.log('crm:' + msg);
+          $.ajax({
+            type: 'POST',
+            url: 'https://app.getresponse.com/add_subscriber.html',
+            dataType: 'json',
+            data: fieldsDefault,
+            statusCode: {
+              0: function(msg) {
+                console.log('gr:' + msg);
+                //dataLayer.push({'event': 'sendform'});
+                if (formid.attr('id') == 'exitform') {
+                  //succestext.addClass('succesok');
+                  //loader.css('display','none');
+                  //proccesbar.animate({
+                  //width: "100%"
+                  //}, 4000, function() {
+                    //proccesbar.attr('style','');
+                    //succestext.removeClass('succesok');
+                    //me.removeClass('send').trigger("reset");
+                    //if ($('.g-modal-wrapper').hasClass('modal-open')) {
+                    //  $('.g-modal-wrapper').removeClass('modal-open').attr('style','');
+                    //  $('html').removeClass('g-modal-html');
+                    //}              
+                    //btnSubmit.attr('disabled', false);
+                  //});
+                } else {
+                  window.location.href = 'https://forumenergy.pro/ticketsdone/';
+                }
+              }
+            }
+          });
+        }
+      }
+    });
 
+/*
     $.ajax({
         type: 'POST',
         url: '../amo/amo_add_contact.php',
@@ -346,6 +402,7 @@ function submitForm() {
           }
         }
     });
+    */
   }
 }
 
