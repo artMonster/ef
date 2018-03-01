@@ -246,6 +246,16 @@ $(function() {
     if (+numb != 1) {
       numb--;
       numbCont.text(numb);
+      var percent;
+      if (numb >= 5) {
+        percent = 10;
+      } else if (numb >= 3) {
+        percent = 7;
+      } else if (numb == 2) {
+        percent = 5;
+      } else {
+        percent = 0;
+      }
       var numpak;
       if (numb == 1) {
         $('.'+pak).find('.prices').next().text('КУПИТЬ БИЛЕТ');
@@ -258,26 +268,26 @@ $(function() {
         $('.'+pak).find('.priceNow').text($priceData[0].pak01[4]*numb);
         $('.'+pak).find('.priceOnline').text($priceData[0].pak01[5]*numb);
       } else if (pak == 'pak02') {
-        $('.'+pak).find('.p01').text($priceData[0].pak02[0]*numb);
-        $('.'+pak).find('.p02').text($priceData[0].pak02[1]*numb);
-        $('.'+pak).find('.p03').text($priceData[0].pak02[2]*numb);
-        $('.'+pak).find('.p04').text($priceData[0].pak02[3]*numb);
-        $('.'+pak).find('.priceNow').text($priceData[0].pak02[4]*numb);
-        $('.'+pak).find('.priceOnline').text($priceData[0].pak02[5]*numb);
+        $('.'+pak).find('.p01').text( (($priceData[0].pak02[0] - ((($priceData[0].pak02[0])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p02').text( (($priceData[0].pak02[1] - ((($priceData[0].pak02[1])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p03').text( (($priceData[0].pak02[2] - ((($priceData[0].pak02[2])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p04').text( (($priceData[0].pak02[3] - ((($priceData[0].pak02[3])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceNow').text( (($priceData[0].pak02[4] - ((($priceData[0].pak02[4])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceOnline').text( (($priceData[0].pak02[5] - ((($priceData[0].pak02[5])/100)*percent))*numb).toFixed() );
       } else if (pak == 'pak03') {
-        $('.'+pak).find('.p01').text($priceData[0].pak03[0]*numb);
-        $('.'+pak).find('.p02').text($priceData[0].pak03[1]*numb);
-        $('.'+pak).find('.p03').text($priceData[0].pak03[2]*numb);
-        $('.'+pak).find('.p04').text($priceData[0].pak03[3]*numb);
-        $('.'+pak).find('.priceNow').text($priceData[0].pak03[4]*numb);
-        $('.'+pak).find('.priceOnline').text($priceData[0].pak03[5]*numb);
+        $('.'+pak).find('.p01').text( (($priceData[0].pak03[0] - ((($priceData[0].pak03[0])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p02').text( (($priceData[0].pak03[1] - ((($priceData[0].pak03[1])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p03').text( (($priceData[0].pak03[2] - ((($priceData[0].pak03[2])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p04').text( (($priceData[0].pak03[3] - ((($priceData[0].pak03[3])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceNow').text( (($priceData[0].pak03[4] - ((($priceData[0].pak03[4])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceOnline').text( (($priceData[0].pak03[5] - ((($priceData[0].pak03[5])/100)*percent))*numb).toFixed() );
       } else if (pak == 'pak04') {
-        $('.'+pak).find('.p01').text($priceData[0].pak04[0]*numb);
-        $('.'+pak).find('.p02').text($priceData[0].pak04[1]*numb);
-        $('.'+pak).find('.p03').text($priceData[0].pak04[2]*numb);
-        $('.'+pak).find('.p04').text($priceData[0].pak04[3]*numb);
-        $('.'+pak).find('.priceNow').text($priceData[0].pak04[4]*numb);
-        $('.'+pak).find('.priceOnline').text($priceData[0].pak04[5]*numb);
+        $('.'+pak).find('.p01').text( (($priceData[0].pak04[0] - ((($priceData[0].pak04[0])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p02').text( (($priceData[0].pak04[1] - ((($priceData[0].pak04[1])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p03').text( (($priceData[0].pak04[2] - ((($priceData[0].pak04[2])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p04').text( (($priceData[0].pak04[3] - ((($priceData[0].pak04[3])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceNow').text( (($priceData[0].pak04[4] - ((($priceData[0].pak04[4])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceOnline').text( (($priceData[0].pak04[5] - ((($priceData[0].pak04[5])/100)*percent))*numb).toFixed() );
       } else if (pak == 'pak05') {
         $('.'+pak).find('.p01').text($priceData[0].pak05[0]*numb);
         $('.'+pak).find('.p02').text($priceData[0].pak05[1]*numb);
