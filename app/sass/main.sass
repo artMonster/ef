@@ -1525,7 +1525,7 @@ $btn-transition: transform .5s cubic-bezier(.17, .67, .6, 1.3)
 			list-style: none
 			margin: 0
 			padding: 0
-			min-height: 881px
+			min-height: 1115px
 			li
 				padding-top: 7px
 				position: relative
@@ -1590,6 +1590,14 @@ $btn-transition: transform .5s cubic-bezier(.17, .67, .6, 1.3)
 				top: -12px
 				display: block
 				background-image: url('../img/bage02.png')
+			.fa-thumbs-up
+				position: absolute
+				right: 20px
+				top: 7px
+				font-size: 16px
+				color: $white
+				font-weight: 400
+				animation: handup 2.3s linear infinite
 			h3
 				background-color: #c4ad76
 			.prices
@@ -1878,7 +1886,13 @@ $btn-transition: transform .5s cubic-bezier(.17, .67, .6, 1.3)
 		transform: translateY(15px)
 	100%
 		transform: translateY(0)
-
+@keyframes handup
+	0%
+		transform: translateY(0)
+	10%
+		transform: translateY(-5px)
+	100%
+		transform: translateY(0)
 
 
 
