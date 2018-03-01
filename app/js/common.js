@@ -266,16 +266,12 @@ function submitForm() {
 
 
   var me = $(this);
-  var dataFields = me.find('input');
-  var exitValue = me.find('[name=package]').val();
   var btnSubmit = me.find('[type=submit]');
+  var succestext = $('#succestext');
 
   if (validationsForm(me)){
     me.addClass('send');
     btnSubmit.attr('disabled', true);
-    var formid = me.closest('.modalWrapper');
-    var find_b = me.closest('.container');
-    var fondy_b = find_b.find('.fondy_b');
 
     var fieldsDefault = {
       'name' : me.find('input[name=name]').val(),
@@ -305,6 +301,25 @@ function submitForm() {
     //localStorage.sales = fieldsDefault['sales'];
     //localStorage.jscd = JSON.stringify(jscd);
 
+    if (fieldsDefault['comment'] == 'agents' || fieldsDefault['comment'] == 'partners' ||  fieldsDefault['comment'] == 'sponsor') {
+      $.ajax({
+        type: "POST",
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLSerpOC9vNsdlLNuvR8_zm5wv8K5cUeAABizLos-x6GFxFqBSQ/formResponse',
+        dataType: 'xml',
+        data: gDataFields,
+        statusCode: {
+          0: function() {
+            me.children('.successtext').css('display', 'block');
+            me.children('.sender').css('display', 'none');
+            setTimeout(function() {
+              me.removeClass('send').trigger("reset");
+              me.children('.successtext').css('display', 'none');
+            }, 4000);
+          }
+        }
+      });
+    } else {
+
     $.ajax({
       type: "POST",
       url: 'https://docs.google.com/forms/d/e/1FAIpQLSeosxEHoJlpVasAHRhzrEW20_B60mKo58N1CkYnwcANaTyDcA/formResponse',
@@ -312,7 +327,6 @@ function submitForm() {
       data: gDataFields,
       statusCode: {
         0: function() {
-          console.log('done');
         }
       }
     });
@@ -332,8 +346,9 @@ function submitForm() {
             statusCode: {
               0: function(msg) {
                 console.log('gr:' + msg);
+                window.location.href = 'https://forumenergy.pro/ticketsdone/';
                 //dataLayer.push({'event': 'sendform'});
-                if (formid.attr('id') == 'exitform') {
+                //if (formid.attr('id') == 'exitform') {
                   //succestext.addClass('succesok');
                   //loader.css('display','none');
                   //proccesbar.animate({
@@ -348,15 +363,17 @@ function submitForm() {
                     //}              
                     //btnSubmit.attr('disabled', false);
                   //});
-                } else {
-                  window.location.href = 'https://forumenergy.pro/ticketsdone/';
-                }
+                //} else {
+                 
+                //}
               }
             }
           });
         }
       }
     });
+    }
+    
 
 /*
     $.ajax({

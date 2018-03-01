@@ -179,7 +179,7 @@
 	.bl08 .tikets .wall .gr
 		height: 70px
 	.bl08 .tikets .wall span
-		font-size: 18px
+		font-size: 17px
 	.bl012 h2
 		font-size: 42px
 	.bl013 h2
@@ -531,11 +531,15 @@
 	.item-speaker .photo img
 		width: 240px
 	.item-speaker .energys
-		margin-top: 166px
+		margin-top: 164px
 		width: 100%
 	.item-speaker .energys .e
 		float: left
 		width: 50%
+	.item-speaker .energys .e.e-big
+		width: 100%
+	.item-speaker .energys .e br
+		display: block
 	.item-speaker
 		position: relative
 	.item-speaker .text
@@ -575,6 +579,8 @@
 	#speakers-form .item-speaker
 		background-size: cover
 		background-position: -20px -110px
+	#speakers-form .item-speaker .cont .borderbottom
+		border-bottom: none
 +media-breakpoint-down(sm)
 	.ticketsdone .pak ul
 		min-height: 765px!important;
