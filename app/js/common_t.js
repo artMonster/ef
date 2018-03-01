@@ -1,16 +1,184 @@
+/*!
+ * jQuery Cookie Plugin v1.4.1
+ * https://github.com/carhartl/jquery-cookie
+ *
+ * Copyright 2013 Klaus Hartl
+ * Released under the MIT license
+ */
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    // CommonJS
+    factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function ($) {
+
+  var pluses = /\+/g;
+
+  function encode(s) {
+    return config.raw ? s : encodeURIComponent(s);
+  }
+
+  function decode(s) {
+    return config.raw ? s : decodeURIComponent(s);
+  }
+
+  function stringifyCookieValue(value) {
+    return encode(config.json ? JSON.stringify(value) : String(value));
+  }
+
+  function parseCookieValue(s) {
+    if (s.indexOf('"') === 0) {
+      // This is a quoted cookie as according to RFC2068, unescape...
+      s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+    }
+
+    try {
+      // Replace server-side written pluses with spaces.
+      // If we can't decode the cookie, ignore it, it's unusable.
+      // If we can't parse the cookie, ignore it, it's unusable.
+      s = decodeURIComponent(s.replace(pluses, ' '));
+      return config.json ? JSON.parse(s) : s;
+    } catch(e) {}
+  }
+
+  function read(s, converter) {
+    var value = config.raw ? s : parseCookieValue(s);
+    return $.isFunction(converter) ? converter(value) : value;
+  }
+
+  var config = $.cookie = function (key, value, options) {
+
+    // Write
+
+    if (value !== undefined && !$.isFunction(value)) {
+      options = $.extend({}, config.defaults, options);
+
+      if (typeof options.expires === 'number') {
+        var days = options.expires, t = options.expires = new Date();
+        t.setTime(+t + days * 864e+5);
+      }
+
+      return (document.cookie = [
+        encode(key), '=', stringifyCookieValue(value),
+        options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+        options.path    ? '; path=' + options.path : '',
+        options.domain  ? '; domain=' + options.domain : '',
+        options.secure  ? '; secure' : ''
+      ].join(''));
+    }
+
+    // Read
+
+    var result = key ? undefined : {};
+
+    // To prevent the for loop in the first place assign an empty array
+    // in case there are no cookies at all. Also prevents odd result when
+    // calling $.cookie().
+    var cookies = document.cookie ? document.cookie.split('; ') : [];
+
+    for (var i = 0, l = cookies.length; i < l; i++) {
+      var parts = cookies[i].split('=');
+      var name = decode(parts.shift());
+      var cookie = parts.join('=');
+
+      if (key && key === name) {
+        // If second argument (value) is a function it's a converter...
+        result = read(cookie, value);
+        break;
+      }
+
+      // Prevent storing a cookie that we couldn't decode.
+      if (!key && (cookie = read(cookie)) !== undefined) {
+        result[name] = cookie;
+      }
+    }
+
+    return result;
+  };
+
+  config.defaults = {};
+
+  $.removeCookie = function (key, options) {
+    if ($.cookie(key) === undefined) {
+      return false;
+    }
+
+    // Must not alter options, thus extending a fresh object...
+    $.cookie(key, '', $.extend({}, options, { expires: -1 }));
+    return !$.cookie(key);
+  };
+
+}));
+
 $(function() {
 
-  var $speakerData = [
+    var myDate = new Date();
+
+    if($.cookie("timer")) {
+        var myDate = $.cookie("timer");
+    } else {
+        myDate.setDate(myDate.getDate()+1);
+        $.cookie("timer", myDate, {expires: 1})
+    };
+    function get_timer() {
+        var date_t =new Date(myDate);
+        var date = new Date();
+
+        var timer = date_t - date;
+
+        if(date_t > date) {
+            //day
+            var day = parseInt(timer / (24 * 60 * 60 * 1000));
+
+            if(day < 10) {
+                day = '0' + day;
+            }
+            day = day.toString();
+
+            //hours
+            var hour = parseInt(timer / (60 * 60 * 1000)) % 24;
+            if(hour < 10) {
+                hour = '0' + hour;
+            }
+            hour = hour.toString();
+
+            //min
+            var min = parseInt(timer / (60 * 1000)) % 60;
+            if(min < 10) {
+                min = '0' + min;
+            }
+            min = min.toString();
+
+            //sec
+            var sec = parseInt(timer / (1000)) % 60;
+            if(sec < 10) {
+                sec = '0' + sec;
+            }
+            sec = sec.toString();
+            $("#day").html("<span id='stop'>" + day +"</span>");
+            $("#hour").html("<span id='stop'>" + hour + "</span>");
+            $("#min").html( min);
+            $("#sec").html(sec);
+            setTimeout(get_timer, 1000);
+        };
+    };
+    get_timer();
+
+  var $priceData = [
           {
-            name: 'ГИЛ ПЕТЕРСИЛ 0',
-            about: 'ЭКСПЕРТ ПО НЕТВОРКИНГУ №1, СТАРТ-АП ГУРУ',
-            energy: ['violet'],
-            picPath: 'img/sp1.png',
+            pak01: [1700, 1410, 1370, 1240, 1070, 1016],
+            pak02: [2000, 1570, 1450, 1340, 1230, 1168],
+            pak03: [2500, 1830, 1770, 1650, 1540, 1463],
+            pak04: [3400, 2730, 2590, 2460, 2250, 2137],
+            pak05: [8700, 7970, 7450, 7320, 6970, 6621],
           }
         ];
-  $('.pak').each(function() {
-    console.log($(this));
-  });
 
   $('.plus').bind("click", function() {
     var pak = $(this).data('pak');
@@ -19,6 +187,105 @@ $(function() {
     if (+numb >= 1) {
       numb++;
       numbCont.text(numb);
+      var percent;
+      if (numb >= 5) {
+        percent = 10;
+      } else if (numb >= 3) {
+        percent = 7;
+      } else if (numb == 2) {
+        percent = 5;
+      } else {
+        percent = 0;
+      }
+      var numpak;
+      $('.'+pak).find('.prices').next().text('КУПИТЬ БИЛЕТЫ');
+      if (pak == 'pak01') {
+        $('.'+pak).find('.p01').text($priceData[0].pak01[0]*numb);
+        $('.'+pak).find('.p02').text($priceData[0].pak01[1]*numb);
+        $('.'+pak).find('.p03').text($priceData[0].pak01[2]*numb);
+        $('.'+pak).find('.p04').text($priceData[0].pak01[3]*numb);
+        $('.'+pak).find('.priceNow').text($priceData[0].pak01[4]*numb);
+        $('.'+pak).find('.priceOnline').text($priceData[0].pak01[5]*numb);
+      } else if (pak == 'pak02') {
+        $('.'+pak).find('.p01').text( (($priceData[0].pak02[0] - ((($priceData[0].pak02[0])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p02').text( (($priceData[0].pak02[1] - ((($priceData[0].pak02[1])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p03').text( (($priceData[0].pak02[2] - ((($priceData[0].pak02[2])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p04').text( (($priceData[0].pak02[3] - ((($priceData[0].pak02[3])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceNow').text( (($priceData[0].pak02[4] - ((($priceData[0].pak02[4])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceOnline').text( (($priceData[0].pak02[5] - ((($priceData[0].pak02[5])/100)*percent))*numb).toFixed() );
+      } else if (pak == 'pak03') {
+        $('.'+pak).find('.p01').text( (($priceData[0].pak03[0] - ((($priceData[0].pak03[0])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p02').text( (($priceData[0].pak03[1] - ((($priceData[0].pak03[1])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p03').text( (($priceData[0].pak03[2] - ((($priceData[0].pak03[2])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p04').text( (($priceData[0].pak03[3] - ((($priceData[0].pak03[3])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceNow').text( (($priceData[0].pak03[4] - ((($priceData[0].pak03[4])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceOnline').text( (($priceData[0].pak03[5] - ((($priceData[0].pak03[5])/100)*percent))*numb).toFixed() );
+      } else if (pak == 'pak04') {
+        $('.'+pak).find('.p01').text( (($priceData[0].pak04[0] - ((($priceData[0].pak04[0])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p02').text( (($priceData[0].pak04[1] - ((($priceData[0].pak04[1])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p03').text( (($priceData[0].pak04[2] - ((($priceData[0].pak04[2])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.p04').text( (($priceData[0].pak04[3] - ((($priceData[0].pak04[3])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceNow').text( (($priceData[0].pak04[4] - ((($priceData[0].pak04[4])/100)*percent))*numb).toFixed() );
+        $('.'+pak).find('.priceOnline').text( (($priceData[0].pak04[5] - ((($priceData[0].pak04[5])/100)*percent))*numb).toFixed() );
+
+      } else if (pak == 'pak05') {
+        $('.'+pak).find('.p01').text($priceData[0].pak05[0]*numb);
+        $('.'+pak).find('.p02').text($priceData[0].pak05[1]*numb);
+        $('.'+pak).find('.p03').text($priceData[0].pak05[2]*numb);
+        $('.'+pak).find('.p04').text($priceData[0].pak05[3]*numb);
+        $('.'+pak).find('.priceNow').text($priceData[0].pak05[4]*numb);
+        $('.'+pak).find('.priceOnline').text($priceData[0].pak05[5]*numb);
+      }
+    }
+  });
+
+  $('.minus').bind("click", function() {
+    var pak = $(this).data('pak');
+    var numbCont = $(this).next();
+    var numb = +numbCont.text();
+    if (+numb != 1) {
+      numb--;
+      numbCont.text(numb);
+      var numpak;
+      if (numb == 1) {
+        $('.'+pak).find('.prices').next().text('КУПИТЬ БИЛЕТ');
+      }
+      if (pak == 'pak01') {
+        $('.'+pak).find('.p01').text($priceData[0].pak01[0]*numb);
+        $('.'+pak).find('.p02').text($priceData[0].pak01[1]*numb);
+        $('.'+pak).find('.p03').text($priceData[0].pak01[2]*numb);
+        $('.'+pak).find('.p04').text($priceData[0].pak01[3]*numb);
+        $('.'+pak).find('.priceNow').text($priceData[0].pak01[4]*numb);
+        $('.'+pak).find('.priceOnline').text($priceData[0].pak01[5]*numb);
+      } else if (pak == 'pak02') {
+        $('.'+pak).find('.p01').text($priceData[0].pak02[0]*numb);
+        $('.'+pak).find('.p02').text($priceData[0].pak02[1]*numb);
+        $('.'+pak).find('.p03').text($priceData[0].pak02[2]*numb);
+        $('.'+pak).find('.p04').text($priceData[0].pak02[3]*numb);
+        $('.'+pak).find('.priceNow').text($priceData[0].pak02[4]*numb);
+        $('.'+pak).find('.priceOnline').text($priceData[0].pak02[5]*numb);
+      } else if (pak == 'pak03') {
+        $('.'+pak).find('.p01').text($priceData[0].pak03[0]*numb);
+        $('.'+pak).find('.p02').text($priceData[0].pak03[1]*numb);
+        $('.'+pak).find('.p03').text($priceData[0].pak03[2]*numb);
+        $('.'+pak).find('.p04').text($priceData[0].pak03[3]*numb);
+        $('.'+pak).find('.priceNow').text($priceData[0].pak03[4]*numb);
+        $('.'+pak).find('.priceOnline').text($priceData[0].pak03[5]*numb);
+      } else if (pak == 'pak04') {
+        $('.'+pak).find('.p01').text($priceData[0].pak04[0]*numb);
+        $('.'+pak).find('.p02').text($priceData[0].pak04[1]*numb);
+        $('.'+pak).find('.p03').text($priceData[0].pak04[2]*numb);
+        $('.'+pak).find('.p04').text($priceData[0].pak04[3]*numb);
+        $('.'+pak).find('.priceNow').text($priceData[0].pak04[4]*numb);
+        $('.'+pak).find('.priceOnline').text($priceData[0].pak04[5]*numb);
+      } else if (pak == 'pak05') {
+        $('.'+pak).find('.p01').text($priceData[0].pak05[0]*numb);
+        $('.'+pak).find('.p02').text($priceData[0].pak05[1]*numb);
+        $('.'+pak).find('.p03').text($priceData[0].pak05[2]*numb);
+        $('.'+pak).find('.p04').text($priceData[0].pak05[3]*numb);
+        $('.'+pak).find('.priceNow').text($priceData[0].pak05[4]*numb);
+        $('.'+pak).find('.priceOnline').text($priceData[0].pak05[5]*numb);
+      }
     }
   });
 
@@ -34,163 +301,7 @@ $(function() {
 
   $(document).ready(function() {
 
-    var $rewSlider = $('.rew-slider');
-    var $photoSlider = $('.events-slider');
-
-    $rewSlider.slick({
-      slidesToShow: 1,
-      arrows: true,
-      infinite: false,
-      adaptiveHeight: false,
-      dots: false,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 1,
-            arrows: false,
-            dots: true,
-          }
-        }
-      ]
-    });
-
-    $photoSlider.slick({
-      slidesToShow: 1,
-      arrows: true,
-      infinite: false,
-      adaptiveHeight: false,
-      dots: false,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 1,
-            arrows: false,
-            dots: true,
-          }
-        }
-      ]
-    });
-
-    var $speakerData = [
-          {
-            name: 'ГИЛ ПЕТЕРСИЛ 0',
-            about: 'ЭКСПЕРТ ПО НЕТВОРКИНГУ №1, СТАРТ-АП ГУРУ',
-            energy: ['violet'],
-            picPath: 'img/sp1.png',
-            contList: [
-              'Экс-председатель правления ОАО «Ощадбанк»',
-              'Доктор экономических наук',
-              'Председатель Правления Украинской Межбанковской Валютной Биржи (УМВБ) c октября 2013 года',
-              '20-летний опыт работы в сфере развития банковского дела',
-              'Международный эксперт в вопросах инвестирования',
-              'Научный деятель, преподаватель во многих европейских университетах.',
-            ],
-          }, {
-            name: 'АЛЛА КЛИМЕНКО',
-            about: 'ПСИХОЛОГ, СЕРТИФИЦИРОВАННЫЙ КОУЧ, МОТИВАЦИОННЫЙ СПИКЕР',
-            energy: ['blue', 'red'],
-            picPath: 'img/sp1.png',
-            contList: [
-              'Занимается тренерской деятельностью более 8 лет.',
-              'Сооснователь и ведущий тренер образовательного проекта Upgrade.',
-            ],
-          }, {
-            name: 'АНДРЕЙ ОНИСТРАТ',
-            about: 'БИЗНЕСМЕН, БАНКИР, СПОРТСМЕН, МОТИВАТОР',
-            energy: ['orange'],
-            picPath: 'img/sp2.png',
-            contList: [
-'Бизнесмен, банкир, вице-президент Федерации триатлона Украины, спортсмен. Отец 5-х детей',
-'Первый 1.000.000 $ заработал в 24 года на валютном рынке',
-'В кризисном 2009 году стал собственником банка «Национальный кредит»',
-'Обладатель награды «100 новых капиталистов Украины» (2011)',
-'Кандидат экономических наук, доцент кафедры банковского дела и международных отношений КНЭУ',
-'В 2012 был номинирован на звание «Финансист года» в независимом Национальном рейтинге Украины «Человек года»',
-'Чемпион Украины по мотогонкам в классе «SBK» и шоссейно-кольцевым мотогонкам в классах SSB (Super Sport Bike) и OPEN (2003)',
-'Обладатель Кубка Одессы, призер этапов Открытого Кубка Восточной Европы, бронзовый призер чемпионата Украины в классе "SS-1000" (2004)',
-'Неоднократно Участник 5-ти крупнейших мировых марафонов серии World Marathon Majors',
-'Трижды полностью проходил IRONMAN. Лучший результат IronMan Frankfurt (триатлон: плавание 3,8 км, велосипед 180 км, бег 42, 195 км) за 9 ч. 58 мин.',
-            ],
-          }, {
-            name: 'ВЯЧЕСЛАВ СМИРНОВ',
-            about: 'ЭКСПЕРТ В ОБЛАСТИ СИСТЕМ РАЗВИТИЯ И ОЗДОРОВЛЕНИЯ ЧЕЛОВЕКА',
-            energy: ['blue', 'red'],
-            picPath: 'img/sp3.png',
-            contList: [
-'Врач-терапевт. Военный врач. Врач народной и нетрадиционной медицины',
-'Сертифицированный Международной федерацией йоги (IYF) инструктор',
-'Профессиональный преподаватель йоги и систем оздоровления',
-'Директор и владелец Центра йоги и систем оздоровления в Киеве',
-'Создатель авторской Школы йоги и систем оздоровления',
-'Чемпион мира по йога-спорту',
-'Автор многих публикаций и телепрограмм, посвященных здоровью, жизненной эффективности и методам их достижения',
-            ],
-          }, {
-            name: 'ИРИНА ИЩЕНКО',
-            about: 'ПСИХОЛОГ, СПЕЦИАЛИСТ ПО УЛУЧШЕНИЮ КАЧЕСТВА ЖИЗНИ',
-            energy: ['blue', 'violet'],
-            picPath: 'img/sp4.png',
-            contList: [
-'Автор метода «Деконструкция Матрицы Судьбы»',
-'Кандидат психологических наук, член Правления ВГО «Украинская ассоциация системных расстановок»',
-'Системный семейный психолог-психотерапевт, сертифицированный специалист IAG WISL (Германия) в области системных и организационных расстановок, гипнотерапии Милтона Эриксона, позитивной психотерапии.',
-'Основатель, руководитель и ведущий специалист Высшей Школы Психологии и центра развития человека «Mirra»',
-'Организатор приезда в Украину таких мировых светил как: Берт Хеллингер, Станислав Гроф, Мишель Оден',
-'Супервайзер международной конференции «Родосвит» и международного конгресса «Родосвит», на который были приглашены ведущие специалисты 7-стран (Украина, Россия, США, Германия, Австрия, Италия, Франция).',
-            ],
-          }
-        ];
-
-    $('.popup-with-zoom-anim').magnificPopup({
-          type: 'inline',
-          fixedContentPos: true,
-          fixedBgPos: true,
-          overflowY: 'auto',
-          closeBtnInside: true,
-          preloader: false,
-          midClick: true,
-          removalDelay: 300,
-          mainClass: 'mfp-zoom-in',
-          tClose: 'Закрыть',
-          callbacks: {
-          beforeOpen: function() {
-            this.st.mainClass = this.st.el.attr('data-effect');
-            
-            
-            var toForm = this.st.el.attr('data-mfp-src');
-            var commentInput = $(toForm).find('[name=comment]');
-            var comment = this.st.el.attr('data-form');
-            var mTit = $(toForm).find('.mfTitle');
-
-            if (toForm == '#speakers-form') {
-                var spId = +this.st.el.attr('data-sp-id');
-                commentInput.val(comment + '_' + spId);
-                var en = $(toForm).find('.energys');
-                var spName = $(toForm).find('.spName');
-                var spAbout = $(toForm).find('.spAbout');
-                var spPhoto = $(toForm).find('.spPhoto');
-                var spList = $(toForm).find('.list');
-                en.removeClass('orange blue red violet').addClass($speakerData[spId].energy.join(' '));
-                spName.text($speakerData[spId].name);
-                spAbout.text($speakerData[spId].about);
-                spPhoto.attr('src', $speakerData[spId].picPath);
-                spList.html('');
-                $speakerData[spId].contList.forEach(function(item, i, arr) {
-                  var listData = '<div class="col-sm-12 col-md-12 col-lg-6"><p><i class="fa fa-angle-right" aria-hidden="true"></i> ' + item + '</p></div>';
-                  spList.append(listData);
-                });
-                //spList.append(listData);
-              } else {
-                commentInput.val(comment);
-                if (this.st.el.attr('data-tit')){
-                  mTit.html(this.st.el.attr('data-tit'));
-                }
-              }
-            }
-          }
-        });
+   
   }); // document.ready
 
 });
