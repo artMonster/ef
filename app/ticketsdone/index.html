@@ -313,7 +313,7 @@
 									<p>В день события:</p>
 								</div>
 								<div class="col-3 col-lg-4 col-xl-4 col-xxl-3 text-right">
-									<p>8700</p>
+									<p class='p01'>8700</p>
 								</div>
 							</div>
 							<div class="row gray">
@@ -321,7 +321,7 @@
 									<p>С 12 апреля:</p>
 								</div>
 								<div class="col-3 col-lg-4 col-xl-4 col-xxl-3 text-right">
-									<p>8700</p>
+									<p class='p02'>8700</p>
 								</div>
 							</div>
 							<div class="row gray">
@@ -329,7 +329,7 @@
 									<p>С 29 марта:</p>
 								</div>
 								<div class="col-3 col-lg-4 col-xl-4 col-xxl-3 text-right">
-									<p>8700</p>
+									<p class='p03'>8700</p>
 								</div>
 							</div>
 							<div class="row gray gray-last">
@@ -337,7 +337,7 @@
 									<p>С 15 марта:</p>
 								</div>
 								<div class="col-3 col-lg-4 col-xl-4 col-xxl-3 text-right">
-									<p>8700</p>
+									<p class='p04'>8700</p>
 								</div>
 							</div>
 							<div class="row">
@@ -356,9 +356,9 @@
 									<div class="text-center count-ticket">
 										<p class="f20"><strong>Укажите <br>количествово билетов</strong></p>
 										<div class="count-ticket-block">
-											<button class="minus">–</button>
-											<span class="namb">10</span>
-											<button class="plus">+</button>
+											<button class="minus" data-pak='pak01'>–</button>
+											<span class="namb">1</span>
+											<button class="plus" data-pak='pak01'>+</button>
 										</div>
 									</div>
 								</div>
@@ -1077,204 +1077,6 @@
 	</footer>
 </div> <!-- #app -->
 
-<div id="speakers-form" class="container mfp-hide white-popup-block mfp-with-anim">
-	<div class="row">
-		<div class="col-md-7 col-lg-8 bg-blue">
-			<div class="item-speaker">
-				<div class="energys">
-					<div class="e e-orange">
-						<p>ФИЗИЧЕСКАЯ <br>ЭНЕРГИЯ</p>
-					</div>
-					<div class="e e-blue">
-						<p>УМСТВЕННая <br>ЭНЕРГИЯ</p>
-					</div>
-					<div class="e e-red">
-						<p>ЭМОЦИОНАЛЬНАЯ <br>ЭНЕРГИЯ</p>
-					</div>
-					<div class="e e-violet">
-						<p>ДУХОВНАЯ <br>ЭНЕРГИЯ</p>
-					</div>
-				</div>
-				<div class="row cont">
-					<div class="col-md-12 borderbottom">
-						<div class="text">
-							<p class="f22"><b class="spName">СЕРГЕЙ РОЗВАДОВСКИЙ</b></p>
-							<p class="sb f14" class="spAbout">ЭКСПЕРТ В СФЕРЕ ФИНАНСОВ,<br>БИЗНЕСМЕН, ИНВЕСТОР</p>
-						</div>
-						<div class="photo">
-							<img src="img/sp1.png" alt="" class="spPhoto">
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="row list">
-							<div class="col-sm-12 col-md-6">
-								<p><i class="fa fa-angle-right" aria-hidden="true"></i> Бизнесмен, инвестор, кинопродюсер</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-5 col-lg-4 bg">
-			<div class="form">
-				<p class="upp text-center f24"><b>Забронируйте <br>место на событии <br>прямо сейчас:</b></p>
-				<form action="javascript:void(null);" method="post">
-					<div class="sender">
-						<div class="cssload-loader"></div>
-					</div>
-					<div class="fields">
-						<div class="col-12 col-md">
-							<input type="text" class="form-control" name="name" placeholder="Ваше имя">
-						</div>
-						<div class="col-12 col-md">
-							<input type="email" class="form-control" name="email" placeholder="Ваш лучший email">
-						</div>
-						<div class="col-12 col-md">
-							<input type="tel" class="form-control" name="phone" placeholder="Ваш телефон">
-						</div>
-						<div class="col-12 col-md">
-							<button class="btn btn-primary btn-block" type="submit">Зарегистрироваться</button>
-						</div>
-					</div>
-					<p class="error-message text-center"></p>
-					<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
-					<input type="hidden" name="gr_comp" value="42cXL" />
-                	<input type="hidden" name="comment" value="topform" />
-                			
-					<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
-					<input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>"/>
-					<input type="hidden" name="utm_medium" value="<?php echo $utm_medium; ?>"/>
-					<input type="hidden" name="utm_term" value="<?php echo $utm_term; ?>"/>
-					<input type="hidden" name="utm_content" value="<?php echo $utm_content; ?>"/>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div id="main-form" class="container mfp-hide white-popup-block mfp-with-anim">
-	<div class="row justify-content-center">
-		<div class="col-sm-8 col-lg-6">
-			<div class="form bg">
-				<p class="upp text-center f24"><b class="mfTitle">Забронируйте <br>место на событии <br>прямо сейчас:</b></p>
-				<form action="javascript:void(null);" method="post">
-					<div class="sender">
-						<div class="cssload-loader"></div>
-					</div>
-					<div class="fields">
-						<div class="col-12 col-md">
-							<input type="text" class="form-control" name="name" placeholder="Ваше имя">
-						</div>
-						<div class="col-12 col-md">
-							<input type="email" class="form-control" name="email" placeholder="Ваш лучший email">
-						</div>
-						<div class="col-12 col-md">
-							<input type="tel" class="form-control" name="phone" placeholder="Ваш телефон">
-						</div>
-						<div class="col-12 col-md">
-							<button class="btn btn-primary btn-block" type="submit">Зарегистрироваться</button>
-						</div>
-					</div>
-					<p class="error-message text-center"></p>
-					<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
-					<input type="hidden" name="gr_comp" value="42cXL" />
-                	<input type="hidden" name="comment" value="topform" />
-                			
-					<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
-					<input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>"/>
-					<input type="hidden" name="utm_medium" value="<?php echo $utm_medium; ?>"/>
-					<input type="hidden" name="utm_term" value="<?php echo $utm_term; ?>"/>
-					<input type="hidden" name="utm_content" value="<?php echo $utm_content; ?>"/>
-				</form>
-			</div>
-			<p class="text-center upp"><strong>Количество мест <br>ограничено!</strong></p>
-		</div>
-	</div>
-</div>
-<div id="video-form" class="container mfp-hide white-popup-block mfp-with-anim">
-	<div class="row">
-		<div class="col-md-7 col-lg-8 bg-blue">
-			<div class="item-vidos">
-				<video controls="controls" preload="auto" title="LIFEFORUM" id="video_01" poster="img/vid01.jpg">
-					<source src="v_LIFEFORUM.mp4" />
-				</video>
-			</div>
-		</div>
-		<div class="col-md-5 col-lg-4 bg">
-			<div class="form">
-				<p class="upp text-center f24"><b>Забронируйте <br>место на событии <br>прямо сейчас:</b></p>
-				<form action="javascript:void(null);" method="post">
-					<div class="sender">
-						<div class="cssload-loader"></div>
-					</div>
-					<div class="fields">
-						<div class="col-12 col-md">
-							<input type="text" class="form-control" name="name" placeholder="Ваше имя">
-						</div>
-						<div class="col-12 col-md">
-							<input type="email" class="form-control" name="email" placeholder="Ваш лучший email">
-						</div>
-						<div class="col-12 col-md">
-							<input type="tel" class="form-control" name="phone" placeholder="Ваш телефон">
-						</div>
-						<div class="col-12 col-md">
-							<button class="btn btn-primary btn-block" type="submit">Зарегистрироваться</button>
-						</div>
-					</div>
-					<p class="error-message text-center"></p>
-					<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
-					<input type="hidden" name="gr_comp" value="42cXL" />
-                	<input type="hidden" name="comment" value="topform" />
-                			
-					<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
-					<input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>"/>
-					<input type="hidden" name="utm_medium" value="<?php echo $utm_medium; ?>"/>
-					<input type="hidden" name="utm_term" value="<?php echo $utm_term; ?>"/>
-					<input type="hidden" name="utm_content" value="<?php echo $utm_content; ?>"/>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-<div id="part-form" class="container mfp-hide white-popup-block mfp-with-anim">
-	<div class="row justify-content-center">
-		<div class="col-sm-8 col-lg-6">
-			<div class="form bg">
-				<p class="upp text-center f24"><b class="mfTitle">Забронируйте <br>место на событии <br>прямо сейчас:</b></p>
-				<form action="javascript:void(null);" method="post">
-					<div class="sender">
-						<div class="cssload-loader"></div>
-					</div>
-					<div class="fields">
-						<div class="col-12 col-md">
-							<input type="text" class="form-control" name="name" placeholder="Ваше имя">
-						</div>
-						<div class="col-12 col-md">
-							<input type="email" class="form-control" name="email" placeholder="Ваш лучший email">
-						</div>
-						<div class="col-12 col-md">
-							<input type="tel" class="form-control" name="phone" placeholder="Ваш телефон">
-						</div>
-						<div class="col-12 col-md">
-							<button class="btn btn-primary btn-block" type="submit">Зарегистрироваться</button>
-						</div>
-					</div>
-					<p class="error-message text-center"></p>
-					<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
-					<input type="hidden" name="gr_comp" value="42cXL" />
-                	<input type="hidden" name="comment" value="topform" />
-                			
-					<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
-					<input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>"/>
-					<input type="hidden" name="utm_medium" value="<?php echo $utm_medium; ?>"/>
-					<input type="hidden" name="utm_term" value="<?php echo $utm_term; ?>"/>
-					<input type="hidden" name="utm_content" value="<?php echo $utm_content; ?>"/>
-				</form>
-			</div>
-			<p class="text-center upp"><strong>Количество мест <br>ограничено!</strong></p>
-		</div>
-	</div>
-</div>
 <script src="js/scripts.min.js"></script>
 <script>
 ;(function(){
@@ -1317,7 +1119,6 @@
           document.addEventListener('DOMContentLoaded', loadbar, false);
         }());
 </script>
-	<script src="js/common.js"></script>
-	<!--<script src="js/pp.js"></script>-->
+	<script src="js/common_t.js"></script>
 </body>
 </html>
