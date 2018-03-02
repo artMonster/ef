@@ -64,16 +64,35 @@ if (strlen($_GET['gclid']) > '0') {
   z-index: 564564;
 }
 #app {
+	filter: blur(10px);
 	transition: 0.6s;
 	background-color: #fff;
 }
 	</style>
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1492213370873481');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1492213370873481&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
 </head>
 <body class="main" style="background-color: #0e003e;">
 <div id="overlay">
 	<div id="progress"></div>
 </div>
-<div id="app" style="opacity: 0.2;">
+<div id="app" style="opacity: 0.1;">
 	<header class="bl bl-dark">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -523,7 +542,7 @@ if (strlen($_GET['gclid']) > '0') {
 						<div class="energys">
 							<div class="e e-blue">
 								<svg width="21px" height="21px">
-									<path fill-rule="evenodd"  fill="rgb(1, 0, 40)" d="M2.820,18.179 L0.009,7.688 L7.689,0.008 L18.180,2.819 L20.991,13.310 L13.311,20.990 L2.820,18.179 Z"/>
+									<path fill-rule="evenodd"  fill="rgb(1, 0, 40)"  d="M21.002,20.998 L-0.002,15.422 L15.424,-0.001 L21.002,20.998 Z"/>
 								</svg>
 								<p>УМСТВЕННая <br>ЭНЕРГИЯ</p>
 							</div>
@@ -560,7 +579,7 @@ if (strlen($_GET['gclid']) > '0') {
 						<div class="energys">
 							<div class="e e-orange e-big">
 								<svg width="21px" height="21px">
-									<path fill-rule="evenodd"  fill="rgb(1, 0, 40)" d="M2.820,18.179 L0.009,7.688 L7.689,0.008 L18.180,2.819 L20.991,13.310 L13.311,20.990 L2.820,18.179 Z"/>
+									<path fill-rule="evenodd"  fill="rgb(1, 0, 40)" d="M10.500,-0.001 L21.001,10.500 L10.500,21.001 L-0.001,10.500 L10.500,-0.001 Z"/>
 								</svg>
 								<p>ФИЗИЧЕСКАЯ <br>ЭНЕРГИЯ</p>
 							</div>
@@ -590,7 +609,7 @@ if (strlen($_GET['gclid']) > '0') {
 						<div class="energys">
 							<div class="e e-blue">
 								<svg width="21px" height="21px">
-									<path fill-rule="evenodd"  fill="rgb(1, 0, 40)" d="M2.820,18.179 L0.009,7.688 L7.689,0.008 L18.180,2.819 L20.991,13.310 L13.311,20.990 L2.820,18.179 Z"/>
+									<path fill-rule="evenodd"  fill="rgb(1, 0, 40)"  d="M21.002,20.998 L-0.002,15.422 L15.424,-0.001 L21.002,20.998 Z"/>
 								</svg>
 								<p>УМСТВЕННая <br>ЭНЕРГИЯ</p>
 							</div>
@@ -625,7 +644,7 @@ if (strlen($_GET['gclid']) > '0') {
 						<div class="energys">
 							<div class="e e-blue">
 								<svg width="21px" height="21px">
-									<path fill-rule="evenodd"  fill="rgb(1, 0, 40)" d="M2.820,18.179 L0.009,7.688 L7.689,0.008 L18.180,2.819 L20.991,13.310 L13.311,20.990 L2.820,18.179 Z"/>
+									<path fill-rule="evenodd"  fill="rgb(1, 0, 40)"  d="M21.002,20.998 L-0.002,15.422 L15.424,-0.001 L21.002,20.998 Z"/>
 								</svg>
 								<p>УМСТВЕННая <br>ЭНЕРГИЯ</p>
 							</div>
@@ -904,6 +923,8 @@ if (strlen($_GET['gclid']) > '0') {
 						<img src="img/col06.jpg" alt="">
 						<img src="img/col07.jpg" alt="">
 						<img src="img/col08.jpg" alt="">
+						<img src="img/col09.jpg" alt="">
+						<img src="img/col010.jpg" alt="">
 					</div>
 				</div>
 			</div>
@@ -1024,7 +1045,7 @@ if (strlen($_GET['gclid']) > '0') {
 				</div>
 				<div class="col-md-6">
 					<div class="vid video" style="background-image: url('img/vid02.jpg')">
-						<a href="#video-form" data-form="main_Big" data-effect="mfp-zoom-in" class="popup-with-zoom-anim">
+						<a href="#video2-form" data-form="main_Big" data-effect="mfp-zoom-in" class="popup-with-zoom-anim">
 							<div class="ic">
 								<i><svg 
  xmlns="http://www.w3.org/2000/svg"
@@ -1435,15 +1456,27 @@ if (strlen($_GET['gclid']) > '0') {
 			<div class="item-speaker">
 				<div class="energys">
 					<div class="e e-orange e-big">
+						<svg width="21px" height="21px">
+									<path fill-rule="evenodd"  fill="rgb(1, 0, 40)" d="M10.500,-0.001 L21.001,10.500 L10.500,21.001 L-0.001,10.500 L10.500,-0.001 Z"/>
+								</svg>
 						<p>ФИЗИЧЕСКАЯ <br>ЭНЕРГИЯ</p>
 					</div>
 					<div class="e e-blue">
+						<svg width="21px" height="21px">
+							<path fill-rule="evenodd"  fill="rgb(1, 0, 40)"  d="M21.002,20.998 L-0.002,15.422 L15.424,-0.001 L21.002,20.998 Z"/>
+						</svg>
 						<p>УМСТВЕННая <br>ЭНЕРГИЯ</p>
 					</div>
 					<div class="e e-red">
+						<svg width="21px" height="21px">
+							<path fill-rule="evenodd"  fill="rgb(1, 0, 40)" d="M2.820,18.179 L0.009,7.688 L7.689,0.008 L18.180,2.819 L20.991,13.310 L13.311,20.990 L2.820,18.179 Z"/>
+						</svg>
 						<p>ЭМОЦИОНАЛЬНАЯ <br>ЭНЕРГИЯ</p>
 					</div>
 					<div class="e e-violet">
+						<svg width="21px" height="21px">
+							<path fill-rule="evenodd"  fill="rgb(1, 0, 40)" d="M10.500,-0.001 C16.299,-0.001 21.000,4.700 21.000,10.499 C21.000,16.298 16.299,20.999 10.500,20.999 C4.701,20.999 -0.000,16.298 -0.000,10.499 C-0.000,4.700 4.701,-0.001 10.500,-0.001 Z"/>
+						</svg>
 						<p>ДУХОВНАЯ <br>ЭНЕРГИЯ</p>
 					</div>
 				</div>
@@ -1547,7 +1580,7 @@ if (strlen($_GET['gclid']) > '0') {
 	<div class="row">
 		<div class="col-md-7 col-lg-8 bg-blue">
 			<div class="item-vidos">
-				<video controls="controls" preload="auto" title="LIFEFORUM" id="video_01" poster="img/vid01.jpg">
+				<video controls="controls" preload="none" title="LIFEFORUM" id="video_01" poster="img/vid01.jpg">
 					<source src="v_LIFEFORUM.mp4" />
 				</video>
 			</div>
@@ -1576,7 +1609,52 @@ if (strlen($_GET['gclid']) > '0') {
 					<p class="error-message text-center"></p>
 					<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
 					<input type="hidden" name="gr_comp" value="4dgZK" />
-                	<input type="hidden" name="comment" value="video-form" />
+                	<input type="hidden" name="comment" value="video-form-life" />
+                			
+					<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
+					<input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>"/>
+					<input type="hidden" name="utm_medium" value="<?php echo $utm_medium; ?>"/>
+					<input type="hidden" name="utm_term" value="<?php echo $utm_term; ?>"/>
+					<input type="hidden" name="utm_content" value="<?php echo $utm_content; ?>"/>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="video2-form" class="container mfp-hide white-popup-block mfp-with-anim">
+	<div class="row">
+		<div class="col-md-7 col-lg-8 bg-blue">
+			<div class="item-vidos">
+				<video controls="controls" preload="none" title="FINFORUM" id="video_02" poster="img/vid02.jpg">
+					<source src="finforum_fin.mp4" />
+				</video>
+			</div>
+		</div>
+		<div class="col-md-5 col-lg-4 bg">
+			<div class="form">
+				<p class="upp text-center f24"><b>Забронируйте <br>место на событии <br>прямо сейчас:</b></p>
+				<form action="javascript:void(null);" method="post">
+					<div class="sender">
+						<div class="cssload-loader"></div>
+					</div>
+					<div class="fields">
+						<div class="col-12 col-md">
+							<input type="text" class="form-control" name="name" placeholder="Ваше имя">
+						</div>
+						<div class="col-12 col-md">
+							<input type="email" class="form-control" name="email" placeholder="Ваш лучший email">
+						</div>
+						<div class="col-12 col-md">
+							<input type="tel" class="form-control" name="phone" placeholder="Ваш телефон">
+						</div>
+						<div class="col-12 col-md">
+							<button class="btn btn-primary btn-block" type="submit">Зарегистрироваться</button>
+						</div>
+					</div>
+					<p class="error-message text-center"></p>
+					<p class="text-center f12">Мы против спама. Ваши данные никогда <br>не будут переданы 3-м лицам.</p>
+					<input type="hidden" name="gr_comp" value="4dgZK" />
+                	<input type="hidden" name="comment" value="video-form-fin" />
                 			
 					<input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>" />
 					<input type="hidden" name="utm_campaign" value="<?php echo $utm_campaign; ?>"/>
@@ -1717,7 +1795,8 @@ if (strlen($_GET['gclid']) > '0') {
               setTimeout(function(){ 
                 ovrl.style.display = "none";
                 document.getElementById('app').style.opacity = 1;
-              }, 200);
+              	document.getElementById('app').style.filter = 'blur(0px)';
+              }, 500);
             }
             for(var i=0; i<tot; i++) {
               var tImg     = new Image();
@@ -1726,13 +1805,15 @@ if (strlen($_GET['gclid']) > '0') {
               tImg.src     = img[i].src;
             }    
           }
-          document.addEventListener('DOMContentLoaded', loadbar, false);
+          document.addEventListener('DOMContentLoaded', loadbar, true);
         }());
 </script>
-	<script src="js/common.js"></script>
+<script src="js/common.js"></script>
+
 <!--BEGIN PHONET CODE {literal}-->
 <script>var telerWdWidgetId="3c5f14fe-3802-4a3d-90b3-2592ca7f3afa";var telerWdDomain="gonza.phonet.com.ua";</script>
 <script src="//gonza.phonet.com.ua/public/widget/call-catcher/lib-v3.js"></script>
 <!--{/literal} END PHONET CODE -->
+
 </body>
 </html>
