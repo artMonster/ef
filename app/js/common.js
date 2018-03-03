@@ -291,7 +291,11 @@ function submitForm() {
       'entry.1378648537': me.find('input[name=name]').val(),
       'entry.906441403': me.find('input[name=phone]').val(),
       'entry.1561585642': me.find('input[name=email]').val(),
-      'entry.1304558152' : 'utm_source=' + me.find('input[name=utm_source]').val() + ';utm_campaign=' + me.find('input[name=utm_campaign]').val() + ';utm_medium=' + me.find('input[name=utm_medium]').val() + ';utm_term=' + me.find('input[name=utm_term]').val() + ';utm_content=' + me.find('input[name=utm_content]').val(),
+      'entry.1304558152' : me.find('input[name=utm_source]').val(),
+      'entry.1249854747' : me.find('input[name=utm_campaign]').val(),
+      'entry.2076903056' : me.find('input[name=utm_medium]').val(),
+      'entry.1083743092' : me.find('input[name=utm_term]').val(),
+      'entry.594488817' : me.find('input[name=utm_content]').val(),
       'entry.2147320007' : me.find('input[name=comment]').val(),
     };
 
